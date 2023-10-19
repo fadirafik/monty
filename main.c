@@ -44,6 +44,14 @@ int main(int argc, char *argv[])
 */
 stack_t *execute(char *string, stack_t *stack, unsigned int line_n)
 {
+	instruction_t st[] = {
+		{"pall", pall},
+		{"pint", pint},
+		{"add", add},
+		{"swap", swap},
+		{"pop", pop},
+		{"null", NULL}
+	};
 	char *firstword;
 	char *secondword;
 
