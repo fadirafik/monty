@@ -61,10 +61,6 @@ stack_t *execute(char *string, stack_t *stack, unsigned int line_n)
 	}
 	if (!strcmp(firstword, "pall"))
 	{
-	if (stack == NULL)
-	{
-		exit(EXIT_FAILURE);
-	}
 		pall(&stack, line_n);
 	}
 	return (stack);
