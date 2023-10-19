@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 */
 stack_t *execute(char *string, stack_t *stack, unsigned int line_n)
 {
+	int i = 0;
 	instruction_t st[] = {
 		{"pall", pall},
 		{"pint", pint},
@@ -65,11 +66,21 @@ stack_t *execute(char *string, stack_t *stack, unsigned int line_n)
 			exit(EXIT_FAILURE);
 		}
 		push(&stack, atoi(secondword), line_n);
-
 	}
-	if (!strcmp(firstword, "pall"))
+	else if (!strcmp("nop", firstword))
+	;
+	else
 	{
-		pall(&stack, line_n);
+		while (strcmp(st[i].opcode, "null") != 0)
+		{
+			if (!strcmp(st[i].opcode, firstword))
+			{
+				st[i].f(&stack, line_n);
+				return (stack);
+			}
+			i++;
+		}
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_n, firstword);
 	}
 	return (stack);
 }
